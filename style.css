@@ -1,93 +1,50 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* general styling */
-:root {
-  --smaller: .75;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html, body {
-  height: 100%;
-  margin: 0;
+    box-sizing: border-box;
 }
 
 body {
-  align-items: center;
-  background-color: #ffd54f;
-  display: flex;
-  font-family: -apple-system, 
-    BlinkMacSystemFont, 
-    "Segoe UI", 
-    Roboto, 
-    Oxygen-Sans, 
-    Ubuntu, 
-    Cantarell, 
-    "Helvetica Neue", 
-    sans-serif;
-}
-
-.container {
-  color: #333;
-  margin: 0 auto;
-  text-align: center;
+    background-image: url("https://images.unsplash.com/photo-1533294160622-d5fece3e080d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80");
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Poppins', serif;
+    margin: 0;
 }
 
 h1 {
-  font-weight: normal;
-  letter-spacing: .125rem;
-  text-transform: uppercase;
+    font-weight: bold;
+    font-size: 3rem;
+    margin-top: -1rem;
+    color: white;
 }
 
-li {
-  display: inline-block;
-  font-size: 1.5em;
-  list-style-type: none;
-  padding: 1em;
-  text-transform: uppercase;
+.countdown-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    color: white;
 }
 
-li span {
-  display: block;
-  font-size: 4.5rem;
+.big-text {
+    font-weight: bolder;
+    font-size: 3rem;
+    line-height: 1;
+    margin: 1rem 2rem;
+    border-radius: 5px;
+    background-color: rgba(107, 105, 105, 0.459);
 }
 
-.emoji {
-  display: none;
-  padding: 1rem;
+.countdown-el{
+    text-align: center;
 }
 
-.emoji span {
-  font-size: 4rem;
-  padding: 0 .5rem;
-}
-
-@media all and (max-width: 768px) {
-  h1 {
-    font-size: calc(1.5rem * var(--smaller));
-  }
-  
-  li {
-    font-size: calc(1.125rem * var(--smaller));
-  }
-  
-  li span {
-    font-size: calc(3.375rem * var(--smaller));
-  }
+.countdown-el span {
+    font-size: 1.2rem;
 }
