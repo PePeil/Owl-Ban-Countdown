@@ -1,36 +1,27 @@
- CountDownTimer('01/28/2022  00:00 AM', 'countdown');
-    CountDownTimer('01/01/2025 00:00 AM', 'newcountdown');
+window.onload = function() {
+  // Month Day, Year Hour:Minute:Second, id-of-element-container
+  countDownToTime("Jan 5, 2022 15:00:00", 'countdown1'); // ****** Change this line!
+}
+function countDownToTime(countTo, id) {
+  countTo = new Date(countTo).getTime();
+  var now = new Date(),
+      countTo = new Date(countTo),
+      timeDifference = (countTo - now);
+      
+  var secondsInADay = 60 * 60 * 1000 * 24,
+      secondsInAHour = 60 * 60 * 1000;
 
-    function CountDownTimer(dt, id)
-    {
-        var end = new Date(dt);
+  days = Math.floor(timeDifference / (secondsInADay) * 1);
+  hours = Math.floor((timeDifference % (secondsInADay)) / (secondsInAHour) * 1);
+  mins = Math.floor(((timeDifference % (secondsInADay)) % (secondsInAHour)) / (60 * 1000) * 1);
+  secs = Math.floor((((timeDifference % (secondsInADay)) % (secondsInAHour)) % (60 * 1000)) / 1000 * 1);
 
-        var _second = 1000;
-        var _minute = _second * 60;
-        var _hour = _minute * 60;
-        var _day = _hour * 24;
-        var timer;
+  var idEl = document.getElementById(id);
+  idEl.getElementsByClassName('days')[0].innerHTML = days;
+  idEl.getElementsByClassName('hours')[0].innerHTML = hours;
+  idEl.getElementsByClassName('minutes')[0].innerHTML = mins;
+  idEl.getElementsByClassName('seconds')[0].innerHTML = secs;
 
-        function showRemaining() {
-            var now = new Date();
-            var distance = end - now;
-            if (distance < 0) {
-
-                clearInterval(timer);
-                document.getElementById(id).innerHTML = 'EXPIRED!';
-
-                return;
-            }
-            var days = Math.floor(distance / _day);
-            var hours = Math.floor((distance % _day) / _hour);
-            var minutes = Math.floor((distance % _hour) / _minute);
-            var seconds = Math.floor((distance % _minute) / _second);
-
-            document.getElementById(id).innerHTML = days + '일 ';
-            document.getElementById(id).innerHTML += hours + '시간 ';
-            document.getElementById(id).innerHTML += minutes + '분 ';
-            document.getElementById(id).innerHTML += seconds + '초';
-        }
-
-        timer = setInterval(showRemaining, 1000);
-    }
+  clearTimeout(countDownToTime.interval);
+  countDownToTime.interval = setTimeout(function(){ countDownToTime(countTo, id); },1000);
+}
