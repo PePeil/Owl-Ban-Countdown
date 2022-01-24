@@ -1,4 +1,4 @@
- CountDownTimer('01/28/2022'  00:00 AM, 'countdown');
+ CountDownTimer('01/28/2022  00:00 AM', 'countdown');
     CountDownTimer('01/01/2025 00:00 AM', 'newcountdown');
 
     function CountDownTimer(dt, id)
