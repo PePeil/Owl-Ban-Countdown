@@ -5,7 +5,7 @@ const secondsEl = document.getElementById('seconds')
 
 
 function countDown(){
-    const newYear = new Date(2022, 0, 28)
+    const newYear = new Date(2022, 0, 30)
 	const curr = new Date();
 	const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
 	const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
