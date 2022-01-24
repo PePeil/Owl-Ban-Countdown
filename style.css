@@ -1,50 +1,75 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
-
-* {
-    box-sizing: border-box;
-}
-
 body {
-    background-image: url("https://images.unsplash.com/photo-1533294160622-d5fece3e080d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80");
-    background-size: cover;
-    background-position: center center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    font-family: 'Poppins', serif;
-    margin: 0;
+    background: #282e3a;
+    font-family: tahoma;
 }
 
 h1 {
-    font-weight: bold;
-    font-size: 3rem;
-    margin-top: -1rem;
-    color: white;
-}
-
-.countdown-container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-
-.big-text {
-    font-weight: bolder;
-    font-size: 3rem;
-    line-height: 1;
-    margin: 1rem 2rem;
-    border-radius: 5px;
-    background-color: rgba(107, 105, 105, 0.459);
-}
-
-.countdown-el{
+    color: #fff;
     text-align: center;
+    font-size: 50px;
+    letter-spacing: 10px;
 }
 
-.countdown-el span {
-    font-size: 1.2rem;
+#main {
+    width: 850px;
+    margin: 2% auto;
+}
+
+#clock span {
+    float: left;
+    text-align: center;
+    font-size: 60px;
+    margin: 0 2.5%;
+    color: #fff;
+    padding: 20px;
+    width: 20%;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+#clock span:nth-child(1) {
+    background: #fa5559;
+}
+
+#clock span:nth-child(2) {
+    background: #26c2b9;
+}
+
+#clock span:nth-child(3) {
+    background: #f6bc58;
+}
+
+#clock span:nth-child(4) {
+    background: #2dcb74;
+}
+
+#clock::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#display span {
+    float: left;
+    width: 25%;
+    text-align: center;
+    margin-top: 30px;
+    color: #ddd;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 1px rgba(10, 10, 10, 0.7);
+}
+
+span.flip {
+    animation: flip 0.7s ease forwards;
+}
+
+@keyframes flip {
+    0% {
+        transform: rotateX(0deg);
+    }
+    100% {
+        transform: rotateX(360deg);
+    }
 }
