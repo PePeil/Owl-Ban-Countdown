@@ -1,50 +1,23 @@
-/*
-m4mohaiman.github.io
-*/
-function updateTimer(deadline) {
-    var time = deadline - new Date();
-    return {
-        'days': Math.floor(time / (1000 * 60 * 60 * 24)),
-        'hours': Math.floor((time / (1000 * 60 * 60)) % 24),
-        'minutes': Math.floor((time / 1000 / 60) % 60),
-        'seconds': Math.floor((time / 1000) % 60),
-        'total': time
-    };
+function updateTimer() {
+    future = Date.parse("jun 12, 2022 01:30:00");
+    now = new Date();
+    diff = future - now;
+
+    days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    hours = Math.floor(diff / (1000 * 60 * 60));
+    mins = Math.floor(diff / (1000 * 60));
+    secs = Math.floor(diff / 1000);
+
+    d = days;
+    h = hours - days * 24;
+    m = mins - hours * 60;
+    s = secs - mins * 60;
+
+    document.getElementById("timer")
+        .innerHTML =
+        '<div>' + d + '<span>Days</span></div>' +
+        '<div>' + h + '<span>Hours</span></div>' +
+        '<div>' + m + '<span>Minutes</span></div>' +
+        '<div>' + s + '<span>Seconds</span></div>';
 }
-
-
-
-
-
-function startTimer(id, deadline) {
-    var timerInterval = setInterval(function() {
-        var clock = document.getElementById(id);
-        var timer = updateTimer(deadline);
-
-        clock.innerHTML = '<span>' + timer.days + '</span>' +
-            '<span>' + timer.hours + '</span>' +
-            '<span>' + timer.minutes + '</span>' +
-            '<span>' + timer.seconds + '</span>';
-
-        //animation
-        var spans = clock.getElementsByTagName("span");
-        animateClock(spans[3]);
-        if (timer.seconds == 59) animateClock(spans[2]);
-        if (timer.minutes == 59 && timer.seconds == 59) animateClock(spans[1]);
-        if (timer.hours == 23 && timer.minutes == 59 && timer.seconds == 59) animateClock(spans[0]);
-
-        //check for end of time
-
-        if (timer.total < 1) {
-            clearInterval(timerInterval);
-            clock.innerHTML = '<span>0</span><span>0</span><span>0</span><span>0</span>';
-        }
-    }, 1000);
-}
-
-window.onload = function() {
-
-    var deadline = new Date("Jan 28, 2022 23:00:00");
-    startTimer("clock", deadline);
-
-};
+setInterval('updateTimer()', 1000);
