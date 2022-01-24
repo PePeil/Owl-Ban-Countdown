@@ -1,6 +1,6 @@
 window.onload = function() {
   // Month Day, Year Hour:Minute:Second, id-of-element-container
-  countDownToTime("Jan 5, 2022 16:00:00", 'countdown1'); // ****** Change this line!
+  countDownToTime("Jan 5, 2022 20:00:00", 'countdown1'); // ****** Change this line!
 }
 function countDownToTime(countTo, id) {
   countTo = new Date(countTo).getTime();
