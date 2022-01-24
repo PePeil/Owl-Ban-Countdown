@@ -1,31 +1,36 @@
-const dayEl = document.getElementById('day')
-const hoursEl = document.getElementById('hours')
-const minsEl = document.getElementById('mins')
-const secondsEl = document.getElementById('seconds')
+ CountDownTimer('01/01/2023', 'countdown');
+    CountDownTimer('01/01/2025 00:00 AM', 'newcountdown');
 
+    function CountDownTimer(dt, id)
+    {
+        var end = new Date(dt);
 
-function countDown(){
-    const newYear = new Date(2022, 1, 28)
-	const curr = new Date();
-	const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
-	const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
-    const current = new Date(utc + (KR_TIME_DIFF));
+        var _second = 1000;
+        var _minute = _second * 60;
+        var _hour = _minute * 60;
+        var _day = _hour * 24;
+        var timer;
 
-    const diffTime = Math.abs(newYear-current)
+        function showRemaining() {
+            var now = new Date();
+            var distance = end - now;
+            if (distance < 0) {
 
-    const days = Math.floor( diffTime/(1000*3600*24) )
-    const hours = Math.floor( diffTime/(1000*3600) %24)
-    const mins = Math.floor( diffTime/(1000*60) %60)
-    const seconds = Math.floor( diffTime/(1000) %60)
+                clearInterval(timer);
+                document.getElementById(id).innerHTML = 'EXPIRED!';
 
-    dayEl.innerHTML = formatTime(days)
-    hoursEl.innerHTML = formatTime(hours)
-    minsEl.innerHTML = formatTime(mins)
-    secondsEl.innerHTML = formatTime(seconds)
-}
-function formatTime(time){
-    return time < 10 ? (`0${time}`) : (time);
-}
-countDown()
+                return;
+            }
+            var days = Math.floor(distance / _day);
+            var hours = Math.floor((distance % _day) / _hour);
+            var minutes = Math.floor((distance % _hour) / _minute);
+            var seconds = Math.floor((distance % _minute) / _second);
 
-setInterval(countDown, 1000)
+            document.getElementById(id).innerHTML = days + '일 ';
+            document.getElementById(id).innerHTML += hours + '시간 ';
+            document.getElementById(id).innerHTML += minutes + '분 ';
+            document.getElementById(id).innerHTML += seconds + '초';
+        }
+
+        timer = setInterval(showRemaining, 1000);
+    }
