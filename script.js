@@ -1,35 +1,50 @@
-
-// 鏈接id
-const daysEl = document.getElementById("days");
-const hoursEl = document.getElementById("hours");
-const minsEl = document.getElementById("mins");
-const secondsEl = document.getElementById("seconds");
-
-// 輸入要倒數的日期
-const Brithdays = "21 Nov 2022";
-
-function countdown() {
-    const BrithdaysDate = new Date(Brithdays);
-    const currentDate = new Date();
-
-    const totalSeconds = (BrithdaysDate - currentDate) / 1000;
-
-    const days = Math.floor(totalSeconds / 3600 / 24);
-    const hours = Math.floor(totalSeconds / 3600) % 24;
-    const mins = Math.floor(totalSeconds / 60) % 60;
-    const seconds = Math.floor(totalSeconds) % 60;
-
-    daysEl.innerHTML = days;
-    hoursEl.innerHTML = formatTime(hours);
-    minsEl.innerHTML = formatTime(mins);
-    secondsEl.innerHTML = formatTime(seconds);
+/*
+m4mohaiman.github.io
+*/
+function updateTimer(deadline) {
+    var time = deadline - new Date();
+    return {
+        'days': Math.floor(time / (1000 * 60 * 60 * 24)),
+        'hours': Math.floor((time / (1000 * 60 * 60)) % 24),
+        'minutes': Math.floor((time / 1000 / 60) % 60),
+        'seconds': Math.floor((time / 1000) % 60),
+        'total': time
+    };
 }
 
-// 當time小於0時跳轉
-function formatTime(time) {
-    return time < 10 ? "0"+time : time ;
+
+
+
+
+function startTimer(id, deadline) {
+    var timerInterval = setInterval(function() {
+        var clock = document.getElementById(id);
+        var timer = updateTimer(deadline);
+
+        clock.innerHTML = '<span>' + timer.days + '</span>' +
+            '<span>' + timer.hours + '</span>' +
+            '<span>' + timer.minutes + '</span>' +
+            '<span>' + timer.seconds + '</span>';
+
+        //animation
+        var spans = clock.getElementsByTagName("span");
+        animateClock(spans[3]);
+        if (timer.seconds == 59) animateClock(spans[2]);
+        if (timer.minutes == 59 && timer.seconds == 59) animateClock(spans[1]);
+        if (timer.hours == 23 && timer.minutes == 59 && timer.seconds == 59) animateClock(spans[0]);
+
+        //check for end of time
+
+        if (timer.total < 1) {
+            clearInterval(timerInterval);
+            clock.innerHTML = '<span>0</span><span>0</span><span>0</span><span>0</span>';
+        }
+    }, 1000);
 }
 
-countdown();
+window.onload = function() {
 
-setInterval(countdown, 1000);
+    var deadline = new Date("Jan 28, 2022 23:00:00");
+    startTimer("clock", deadline);
+
+};
